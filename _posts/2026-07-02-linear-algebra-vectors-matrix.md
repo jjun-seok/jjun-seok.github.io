@@ -197,3 +197,11 @@ x = np.linalg.solve(A, b)   # Ax=b를 바로 풀어줌
 2. 내적으로 각도(코사인 유사도)까지 구할 수 있다 — 방향 유사성 측정의 기본 도구.
 3. 행렬 곱은 `AB ≠ BA`, `*`은 원소별 곱이지 행렬 곱이 아니다 — 이 둘을 헷갈리면 바로 버그.
 4. 역행렬은 `det(A) ≠ 0`일 때만 존재하고, 실무에서 연립방정식은 역행렬을 직접 구하기보다 `np.linalg.solve()`로 푸는 게 일반적.
+
+---
+
+## 참고
+
+- [공돌이의 수학정리노트](https://angeloyeo.github.io/) — 벡터, 행렬, 고유값 등을 그림으로 설명
+- [NumPy - Linear algebra 공식 문서](https://numpy.org/doc/stable/reference/routines.linalg.html)
+- [SciPy - Linear algebra 공식 문서](https://docs.scipy.org/doc/scipy/reference/linalg.html)

@@ -241,3 +241,12 @@ model_params.to_csv('titanic_model_params.csv', index=False)
 3. 로지스틱 회귀는 선형결합 값을 시그모이드에 넣어 확률로 바꾸는 이진분류 모델.
 4. Statsmodels는 절편을 수동으로 추가해야 하고, 대신 `summary()`로 p-value·계수 유의성까지 통계적으로 확인할 수 있다는 게 sklearn과 다른 장점.
 5. 정확도 하나만 보지 말고 혼동 행렬로 어떤 종류의 오답(FP/FN)이 많은지 봐야 한다.
+
+---
+
+## 참고
+
+- [NumPy 공식 문서](https://numpy.org/doc/stable/)
+- [Pandas 공식 문서](https://pandas.pydata.org/docs/)
+- [Seaborn 공식 문서](https://seaborn.pydata.org/)
+- [Statsmodels - Logit 공식 문서](https://www.statsmodels.org/stable/generated/statsmodels.discrete.discrete_model.Logit.html)

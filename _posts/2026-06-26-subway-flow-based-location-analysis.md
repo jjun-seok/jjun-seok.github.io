@@ -61,6 +61,8 @@ _2021년 6월 한 달 기준 총유동인구(승차+하차) Top10_
         ↓
 2021년 6월 데이터 추출
         ↓
+시간대별(24개 구간) 승차/하차 → 평균 계산
+        ↓
 역명 정규화 → 환승역 합산 (핵심 처리)
         ↓
 평균 승차/하차/총유동인구/승하차차이 계산
@@ -70,6 +72,19 @@ _2021년 6월 한 달 기준 총유동인구(승차+하차) Top10_
 Top10 도출 + 막대그래프 + 지도 시각화
         ↓
 역 유형 분류용 데이터로 팀에 전달
+```
+
+### 시간대별 평균 계산
+
+원본 데이터는 한 행에 24개 시간대(00시~24시)별 승차/하차 인원이 컬럼으로 각각 펼쳐져 있는 구조였습니다. 이 컬럼들을 평균 내서 "그 역의 대표 승차/하차 인원" 하나로 요약했습니다.
+
+```python
+on_cols = [c for c in metro_recent.columns if '승차인원' in c]
+off_cols = [c for c in metro_recent.columns if '하차인원' in c]
+
+result['평균 승차 인원'] = metro_recent[on_cols].mean(axis=1)  # 24개 시간대 평균
+result['평균 하차 인원'] = metro_recent[off_cols].mean(axis=1)
+result['승하차차이'] = result['평균 승차 인원'] - result['평균 하차 인원']
 ```
 
 ### 핵심 처리 — 환승역 합산
@@ -168,5 +183,11 @@ for _, row in merged.iterrows():
 - 날씨, 경쟁 판매자 수, 단속 리스크 등 현실적 변수는 분석에 반영하지 못했습니다.
 
 ---
+
+## 참고
+
+- [서울 열린데이터광장 - 지하철 호선별 역별 시간대별 승하차 인원 정보](https://data.seoul.go.kr/dataList/OA-12252/S/1/datasetView.do)
+- [folium 공식 문서](https://python-visualization.github.io/folium/)
+- [Pandas - groupby 공식 문서](https://pandas.pydata.org/docs/reference/groupby.html)
 
 *본 프로젝트에서 사용한 전체 코드와 노트북은 [GitHub 저장소]에서 확인할 수 있습니다.*
